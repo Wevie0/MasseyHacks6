@@ -16,7 +16,7 @@ running = True
 def background():
     global backgrounds
     global level
-    screen.blit(transform.scale(image.load("hackathon 2020/p8.png"),(600,720)),(0,0))
+    screen.blit(transform.scale(image.load("hackathon 2020/p2.png"),(600,720)),(0,0))
 
 
 question = 1
