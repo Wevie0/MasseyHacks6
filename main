@@ -12,11 +12,13 @@ screen =display.set_mode(size)
 display.set_caption("Covid-19 Questionaire")
 running = True
 
+mixer.music.load("hackathon 2020/menu.mp3")
+mixer.music.play(-1)
 
 def background():
     global backgrounds
     global level
-    screen.blit(transform.scale(image.load("hackathon 2020/p8.png"),(600,720)),(0,0))
+    screen.blit(transform.scale(image.load("hackathon 2020/p8.png").convert(),(600,720)),(0,0))
 
 
 question = 1
@@ -66,6 +68,8 @@ def level(level,answer,mx,my,mb):
                 else:
                     finish = 2
 
+    
+
 
 while running:
     for evnt in event.get():              
@@ -84,53 +88,68 @@ while running:
         x = ("press a different number")
         nextlevel = nextlev.render(x,True,(255,0,0))
         screen.blit(nextlevel,(100,620))
-            
+    
     elif finish == 2:
         screen.fill((255,0,0))
         x = ("press a different number")
-        nextlevel = nextlev.render(x,True,(255,0,0))
+        nextlevel = nextlev.render(x,True,(255,255,0))
         screen.blit(nextlevel,(100,620))
 
     keys = key.get_pressed()
+    levelinfo = (1,"C",mx,my,mb)
+    
+
+ 
+        
     if keys:
         if keys[K_0] == 1:
-            level(1,"C",mx,my,mb)
-            game = 1
+                levelinfo = (1,"C",mx,my,mb)
+                game = 1
         if keys[K_1] == 1:
-            level(2,"A",mx,my,mb)
-            game = 2
+                levelinfo = (2,"A",mx,my,mb)
+                game = 2
         if keys[K_2] == 1:
-            level(3,"B",mx,my,mb)
-            game = 3  
+                levelinfo = (3,"B",mx,my,mb)
+                game = 3  
         if keys[K_3] == 1:
-            level(4,"D",mx,my,mb)
-            game = 4
+                levelinfo = (4,"D",mx,my,mb)
+                game = 4
         if keys[K_4] == 1:
-            level(5,"A",mx,my,mb)
-            game = 5
+                levelinfo = (5,"A",mx,my,mb)
+                game = 5
         if keys[K_5] == 1:
-            level(6,"D",mx,my,mb)
-            game = 6
+                levelinfo = (6,"D",mx,my,mb)
+                game = 6
         if keys[K_6] == 1:
-            level(7,"A",mx,my,mb)
-            game = 7
+                levelinfo = (7,"A",mx,my,mb)
+                game = 7
         if keys[K_7] == 1:
-            level(8,"D",mx,my,mb)
-            game = 8
+                levelinfo = (8,"D",mx,my,mb)
+                game = 8
         if keys[K_8] == 1:
-            level(9,"D",mx,my,mb)
-            game = 9
+                levelinfo = (9,"D",mx,my,mb)
+                game = 9
         if keys[K_9] == 1:
-            level(10,"A",mx,my,mb)
+            levelinfo = (10,"A",mx,my,mb)
             game = 10
+    level(levelinfo[0],levelinfo[1],levelinfo[2], levelinfo[3], levelinfo[4])
     edges_rect((150,150,255),80,100,440,100)
     edges_rect((150,255,150),80,250,440,50)
     edges_rect((150,255,150),80,350,440,50)
     edges_rect((150,255,150),80,450,440,50)
     edges_rect((150,255,150),80,550,440,50)
-
     
-
+    if game == 0:
+        question0 = nextlev.render("-------------------------------Welcome to covid-19 questionaire!---------------------------",True,(255,255,255))
+        screen.blit(question0,(90,110))
+        A1 = nextlev.render("Press a number from 1-0 on the keypad to start the game. Have Fun!",True,(255,255,255))
+        screen.blit(A1,(90,260))
+        B1 = nextlev.render("This game was created by:",True,(255,255,255))
+        screen.blit(B1,(90,360))
+        C1 = nextlev.render("Benjamin Tran, Kevin Liu,",True,(255,255,255))
+        screen.blit(C1,(90,460))
+        D1 = nextlev.render("Norman Tong, and Jerry Wu",True,(255,255,255))
+        screen.blit(D1,(90,560))
     if game == 1:
         question1 = nextlev.render("Where did Coronavirus originate?",True,(255,255,255))
         screen.blit(question1,(90,110))
@@ -246,3 +265,7 @@ while running:
     display.flip()
     display.update()
 quit()
+
+
+
+
