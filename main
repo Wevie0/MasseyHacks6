@@ -66,16 +66,15 @@ def level(level,answer,mx,my,mb):
                 else:
                     finish = 2
 
-##while running:
-##    for e in event.get():
-##        if e.type == QUIT:
-##            running = False
+
 while running:
-    
     for evnt in event.get():              
         if evnt.type == QUIT:
             running = False
-                
+        
+    screen.fill((0,0,0))
+    mx,my=mouse.get_pos()
+    mb = mouse.get_pressed()            
     nextlev = font.SysFont("timesnewroman",18)
     background()
             
@@ -130,8 +129,7 @@ while running:
     edges_rect((150,255,150),80,450,440,50)
     edges_rect((150,255,150),80,550,440,50)
 
-    mx,my = mouse.get_pos()
-    mb = mouse.get_pressed()
+    
 
     if game == 1:
         question1 = nextlev.render("Where did Coronavirus originate?",True,(255,255,255))
@@ -246,4 +244,5 @@ while running:
 
      
     display.flip()
+    display.update()
 quit()
